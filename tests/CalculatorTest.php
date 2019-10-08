@@ -74,4 +74,24 @@ class CalculatorTest extends ExtendedTestCase
 
         $this->assertSame(0, $this->calc->result());
     }
+
+    /**
+     * @dataProvider provideDataConvertZeroTrailingToInteger
+     */
+    public function testConvertZeroTrailingToIntegerReturnExpected($expected, $value)
+    {
+        $method = $this->getPrivateMethod($this->calc, 'convertZeroTrailingToInteger');
+
+        $this->assertSame($expected, $method->invokeArgs($this->calc, [$value]));
+    }
+
+    public function provideDataConvertZeroTrailingToInteger()
+    {
+        return [
+            'Zero is untouched' => [0, 0],
+            'Int is untouched' => [22, 22],
+            'Trailing .0 to int' => [32, 32.0],
+            'Trailing .something_and_0 to float' => [28.33, 28.330],
+        ];
+    }
 }

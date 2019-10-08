@@ -64,7 +64,22 @@ class Calculator
      */
     public function result()
     {
-        return $this->result;
+        return $this->convertZeroTrailingToInteger($this->result);
+    }
+
+    /**
+     * Return int if float is with trailing .0.
+     *
+     * @param float|int $number
+     * @return float|int
+     */
+    protected function convertZeroTrailingToInteger($number)
+    {
+        if (($number - floor($number)) === 0.0) {
+            $number = (int)$number;
+        }
+
+        return $number;
     }
 
     /**
