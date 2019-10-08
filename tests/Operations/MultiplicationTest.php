@@ -14,12 +14,12 @@ class MultiplicationTest extends TestCase
     /**
      * Corner cases.
      */
-//    public function testCalculateReturnExpectedWhenInputContainsNegative()
-//    {
-//        $addition = new Addition(12, -20);
-//
-//        $this->assertSame(-8, $addition->calculate());
-//    }
+    public function testCalculateReturnExpectedWhenInputContainsNegative()
+    {
+        $addition = new Multiplication(12, -20);
+
+        $this->assertSame(-240, $addition->calculate());
+    }
 
     /**
      * Functionality.

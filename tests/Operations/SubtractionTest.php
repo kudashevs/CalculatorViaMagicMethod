@@ -14,12 +14,12 @@ class SubtractionTest extends TestCase
     /**
      * Corner cases.
      */
-//    public function testCalculateReturnExpectedWhenInputContainsNegative()
-//    {
-//        $addition = new Addition(12, -20);
-//
-//        $this->assertSame(-8, $addition->calculate());
-//    }
+    public function testCalculateReturnExpectedWhenInputContainsNegative()
+    {
+        $addition = new Subtraction(12, -20);
+
+        $this->assertSame(32, $addition->calculate());
+    }
 
     /**
      * Functionality.

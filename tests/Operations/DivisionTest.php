@@ -29,7 +29,7 @@ class DivisionTest extends TestCase
     public function testConstructorThrowExceptionWhenContainsZero()
     {
         $this->expectException(\DivisionByZeroError::class);
-        //$this->expectExceptionMessageRegExp('/^Argument value 42 is not valid. Check/');
+        $this->expectExceptionMessageRegExp('/^The value 0 is not valid for the division. Check/');
 
         new Division(22, 10, 0);
     }
