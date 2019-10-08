@@ -24,10 +24,23 @@ class SubtractionTest extends TestCase
     /**
      * Functionality.
      */
-    public function testCalculateReturnExpectedWhenInputIsValid()
-    {
-        $operation = new Subtraction(22, 12);
 
-        $this->assertSame(10, $operation->calculate());
+    /**
+     * @dataProvider provideData
+     */
+    public function testCalculateReturnExpected($expected, $data)
+    {
+        $operation = new Subtraction(...$data);
+
+        $this->assertSame($expected, $operation->calculate());
+    }
+
+    public function provideData()
+    {
+        return [
+            'Valid integers' => [10, [22, 12]],
+            'Valid floats' => [-2.225, [1.5, 3.725]],
+            'Valid integer and float' => [60.5, [102.5, 42]],
+        ];
     }
 }

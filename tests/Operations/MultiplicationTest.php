@@ -24,17 +24,24 @@ class MultiplicationTest extends TestCase
     /**
      * Functionality.
      */
-    public function testCalculateReturnExpectedWhenInputContainsZero()
-    {
-        $operation = new Multiplication(22, 12, 0);
 
-        $this->assertSame(0, $operation->calculate());
+    /**
+     * @dataProvider provideData
+     */
+    public function testCalculateReturnExpected($expected, $data)
+    {
+        $operation = new Multiplication(...$data);
+
+        $this->assertSame($expected, $operation->calculate());
     }
 
-    public function testCalculateReturnExpectedWhenInputIsValid()
+    public function provideData()
     {
-        $operation = new Multiplication(22, 5);
-
-        $this->assertSame(110, $operation->calculate());
+        return [
+            'When contains zero' => [0, [22, 12, 0]],
+            'Valid integers' => [110, [22, 5]],
+            'Valid floats' => [28.0, [3.5, 8]],
+            'Valid integer and float' => [5.5, [2.75, 2]],
+        ];
     }
 }

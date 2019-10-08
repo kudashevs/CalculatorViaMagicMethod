@@ -41,10 +41,23 @@ class DivisionTest extends TestCase
     /**
      * Functionality.
      */
-    public function testCalculateReturnExpectedWhenInputIsValid()
-    {
-        $operation = new Division(22, 2);
 
-        $this->assertSame(11, $operation->calculate());
+    /**
+     * @dataProvider provideData
+     */
+    public function testCalculateReturnExpected($expected, $data)
+    {
+        $operation = new Division(...$data);
+
+        $this->assertSame($expected, $operation->calculate());
+    }
+
+    public function provideData()
+    {
+        return [
+            'Valid integers' => [11, [22, 2]],
+            'Valid floats' => [3.2758620689655173, [47.5, 14.5]],
+            'Valid integer and float' => [3.0003000300030, [10, 3.333]],
+        ];
     }
 }

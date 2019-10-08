@@ -24,10 +24,23 @@ class AdditionTest extends TestCase
     /**
      * Functionality.
      */
-    public function testCalculateReturnExpectedWhenInputIsValid()
-    {
-        $operation = new Addition(12, 20);
 
-        $this->assertSame(32, $operation->calculate());
+    /**
+     * @dataProvider provideData
+     */
+    public function testCalculateReturnExpected($expected, $data)
+    {
+        $operation = new Addition(...$data);
+
+        $this->assertSame($expected, $operation->calculate());
+    }
+
+    public function provideData()
+    {
+        return [
+            'Valid integers' => [32, [12, 20]],
+            'Valid floats' => [2.922222, [0.5, 2.422222]],
+            'Valid integer and float' => [17.5, [12.5, 5]],
+        ];
     }
 }
