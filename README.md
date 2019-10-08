@@ -1,4 +1,4 @@
-## Calculator Via Magic Method
+## Calculator Via Magic Method [![Build Status](https://travis-ci.org/kudashevs/CalculatorViaMagicMethod.svg?branch=master)](https://travis-ci.org/kudashevs/CalculatorViaMagicMethod)
 
 A simple calculator app is written in PHP and implements mathematical operations through magic _call method.
 
