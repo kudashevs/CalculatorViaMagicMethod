@@ -1,6 +1,6 @@
 {
   "name": "kudashevs/CalculatorViaMagicMethod",
-  "description": "A simple calculator app which implements mathematics operators through magic _call method.",
+  "description": "A simple calculator app which implements mathematical operations through the magic _call method.",
   "keywords": ["php", "study", "calculator", "magic"],
   "license": "MIT",
   "authors": [
