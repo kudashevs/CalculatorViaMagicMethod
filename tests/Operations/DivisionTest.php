@@ -13,7 +13,7 @@ class DivisionTest extends TestCase
     public function testConstructorThrowExceptionWhenEmptyArguments()
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessageRegExp('/^No arguments were passed. Check/');
+        $this->expectExceptionMessageMatches('/^No arguments were passed. Check/');
 
         new Division();
     }
@@ -21,7 +21,7 @@ class DivisionTest extends TestCase
     public function testConstructorThrowExceptionWhenNonNumeric()
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessageRegExp('/^Argument value 42 is not valid. Check/');
+        $this->expectExceptionMessageMatches('/^Argument value 42 is not valid. Check/');
 
         new Division(22, '42');
     }
@@ -29,7 +29,7 @@ class DivisionTest extends TestCase
     public function testConstructorThrowExceptionWhenContainsZero()
     {
         $this->expectException(\DivisionByZeroError::class);
-        $this->expectExceptionMessageRegExp('/^The value 0 is not valid for the division. Check/');
+        $this->expectExceptionMessageMatches('/^The value 0 is not valid for the division. Check/');
 
         new Division(22, 10, 0);
     }

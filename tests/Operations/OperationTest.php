@@ -13,7 +13,7 @@ class OperationTest extends TestCase
     public function testConstructorThrowExceptionWhenEmptyArguments()
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessageRegExp('/^No arguments were passed. Check/');
+        $this->expectExceptionMessageMatches('/^No arguments were passed. Check/');
 
         new Addition();
     }
@@ -21,7 +21,7 @@ class OperationTest extends TestCase
     public function testConstructorThrowExceptionWhenNonNumeric()
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessageRegExp('/^Argument value 42 is not valid. Check/');
+        $this->expectExceptionMessageMatches('/^Argument value 42 is not valid. Check/');
 
         new Addition(22, '42');
     }
