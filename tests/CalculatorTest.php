@@ -11,7 +11,7 @@ class CalculatorTest extends ExtendedTestCase
      */
     private $calc;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->calc = new Calculator();
     }
@@ -22,7 +22,7 @@ class CalculatorTest extends ExtendedTestCase
     public function testCalculatorThrowExceptionWhenMethodNotValid()
     {
         $this->expectException(\BadMethodCallException::class);
-        $this->expectExceptionMessageRegExp('/^Method with not_exist was not found. Check/');
+        $this->expectExceptionMessageMatches('/^Method with not_exist was not found. Check/');
 
         $this->calc->not_exist();
     }
@@ -30,7 +30,7 @@ class CalculatorTest extends ExtendedTestCase
     public function testCalculatorThrowExpcetionWhenMethodLacksArguments()
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessageRegExp('/^No arguments were passed. Check/');
+        $this->expectExceptionMessageMatches('/^No arguments were passed. Check/');
 
         $this->calc->add();
     }
