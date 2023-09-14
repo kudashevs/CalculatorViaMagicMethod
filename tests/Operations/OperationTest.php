@@ -7,9 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 class OperationTest extends TestCase
 {
-    /**
-     * Exceptions.
-     */
     public function testConstructorThrowExceptionWhenEmptyArguments()
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -25,8 +22,4 @@ class OperationTest extends TestCase
 
         new Addition(22, '42');
     }
-
-    // Corner cases.
-
-    // Functionality.
 }

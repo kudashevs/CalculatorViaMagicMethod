@@ -16,9 +16,6 @@ class CalculatorTest extends ExtendedTestCase
         $this->calc = new Calculator();
     }
 
-    /**
-     * Exceptions.
-     */
     public function testCalculatorThrowExceptionWhenMethodNotValid()
     {
         $this->expectException(\BadMethodCallException::class);
@@ -35,13 +32,6 @@ class CalculatorTest extends ExtendedTestCase
         $this->calc->add();
     }
 
-    /**
-     * Corner cases.
-     */
-
-    /**
-     * Functionality.
-     */
     public function testFindOperationReturnExpected()
     {
         $method = $this->getPrivateMethod($this->calc, 'findOperation');

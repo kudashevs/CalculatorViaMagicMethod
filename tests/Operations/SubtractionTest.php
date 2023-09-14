@@ -7,23 +7,12 @@ use PHPUnit\Framework\TestCase;
 
 class SubtractionTest extends TestCase
 {
-    /**
-     * Exceptions.
-     */
-
-    /**
-     * Corner cases.
-     */
     public function testCalculateReturnExpectedWhenInputContainsNegative()
     {
         $addition = new Subtraction(12, -20);
 
         $this->assertSame(32, $addition->calculate());
     }
-
-    /**
-     * Functionality.
-     */
 
     /**
      * @dataProvider provideData

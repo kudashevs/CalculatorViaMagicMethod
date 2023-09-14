@@ -7,9 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 class DivisionTest extends TestCase
 {
-    /**
-     * Exceptions.
-     */
     public function testConstructorThrowExceptionWhenEmptyArguments()
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -33,14 +30,6 @@ class DivisionTest extends TestCase
 
         new Division(22, 10, 0);
     }
-
-    /**
-     * Corner cases.
-     */
-
-    /**
-     * Functionality.
-     */
 
     /**
      * @dataProvider provideData

@@ -7,23 +7,12 @@ use PHPUnit\Framework\TestCase;
 
 class AdditionTest extends TestCase
 {
-    /**
-     * Exceptions.
-     */
-
-    /**
-     * Corner cases.
-     */
     public function testCalculateReturnExpectedWhenInputContainsNegative()
     {
         $operation = new Addition(12, -20);
 
         $this->assertSame(-8, $operation->calculate());
     }
-
-    /**
-     * Functionality.
-     */
 
     /**
      * @dataProvider provideData
