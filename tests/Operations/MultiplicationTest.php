@@ -1,6 +1,6 @@
 <?php
 
-namespace CalculatorViaMagicMethod\Tests;
+namespace CalculatorViaMagicMethod\Tests\Operations;
 
 use PHPUnit\Framework\TestCase;
 use CalculatorViaMagicMethod\Operations\Multiplication;
