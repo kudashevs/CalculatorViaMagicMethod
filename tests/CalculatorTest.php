@@ -26,7 +26,7 @@ class CalculatorTest extends ExtendedTestCase
     public function it_can_throw_an_exception_when_no_arguments_are_provided()
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessageMatches('/^No arguments were passed. Check/');
+        $this->expectExceptionMessage('at least');
 
         $this->calculator->add();
     }

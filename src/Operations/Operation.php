@@ -27,7 +27,7 @@ abstract class Operation
     protected function validate(array $arguments): void
     {
         if (count($arguments) === 0) {
-            throw new \InvalidArgumentException('No arguments were passed. Check input arguments.');
+            throw new \InvalidArgumentException('Please provide at least one argument.');
         }
 
         foreach ($arguments as $number) {
