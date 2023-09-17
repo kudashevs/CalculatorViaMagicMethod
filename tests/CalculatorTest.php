@@ -31,56 +31,39 @@ class CalculatorTest extends ExtendedTestCase
         $this->calculator->add();
     }
 
-    public function testFindOperationReturnExpected()
+    /** @test */
+    public function it_can_throw_an_exception_when_a_wrong_type_argument_is_provided_to_the_closure()
     {
-        $method = $this->getPrivateMethod($this->calculator, 'findOperation');
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('allowed');
 
-        $this->assertEquals('Addition', $method->invokeArgs($this->calculator, ['add']));
-        $this->assertEquals('Addition', $method->invokeArgs($this->calculator, ['addition']));
-    }
-
-    public function testResultReturnInitial()
-    {
-        $initial = 0;
-
-        $this->assertSame($initial, (new Calculator())->result());
-    }
-
-    public function testAdditionReturnExpectedWhenEmptyState()
-    {
-        $this->calculator->add(22);
-
-        $this->assertSame(22, $this->calculator->result());
-    }
-
-    public function testResetReturnExpected()
-    {
-        $this->calculator->add(22);
-
-        $this->assertSame(22, $this->calculator->result());
-
-        $this->calculator->reset();
-
-        $this->assertSame(0, $this->calculator->result());
+        $this->calculator->add(42, 'wrong');
     }
 
     /**
-     * @dataProvider provideDataConvertZeroTrailingToInteger
+     * @test
+     * @dataProvider provideDifferentOperations
      */
-    public function testConvertZeroTrailingToIntegerReturnExpected($expected, $value)
+    public function it_can_perform_an_operation(string $operation, $expected, array $data)
     {
-        $method = $this->getPrivateMethod($this->calculator, 'convertZeroTrailingToInteger');
+        $result = $this->calculator->$operation(...$data);
 
-        $this->assertSame($expected, $method->invokeArgs($this->calculator, [$value]));
+        $this->assertSame($expected, $result);
     }
 
-    public function provideDataConvertZeroTrailingToInteger()
+    public function provideDifferentOperations(): array
     {
         return [
-            'Zero is untouched' => [0, 0],
-            'Int is untouched' => [22, 22],
-            'Trailing .0 to int' => [32, 32.0],
-            'Trailing .something_and_0 to float' => [28.33, 28.330],
+            'addition through add' => ['add', 4, [2, 2]],
+            'addition through addition' => ['addition', 4, [2, 2]],
+            'subtraction through sub' => ['sub', 2, [4, 2]],
+            'subtraction through subtraction' => ['subtraction', 2, [4, 2]],
+            'multiplication through mult' => ['mult', 4, [2, 2]],
+            'multiplication through multiply' => ['multiply', 4, [2, 2]],
+            'multiplication through multiplication' => ['multiplication', 4, [2, 2]],
+            'division through div' => ['div', 2, [4, 2]],
+            'division through divide' => ['divide', 2, [4, 2]],
+            'division through division' => ['division', 2, [4, 2]],
         ];
     }
 }

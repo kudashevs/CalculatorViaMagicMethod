@@ -31,9 +31,8 @@ class Calculator
 
         /** @var Operation $operation */
         $operation = new $fullName();
-        $this->result = $operation->calculate(...$arguments);
 
-        return $this->result();
+        return $operation->calculate(...$arguments);
     }
 
     /**
@@ -60,36 +59,5 @@ class Calculator
         throw new \BadMethodCallException(
             sprintf('Method %s was not found. Check the method name.', $operation)
         );
-    }
-
-    /**
-     * @return float|int
-     */
-    public function result()
-    {
-        return $this->convertZeroTrailingToInteger($this->result);
-    }
-
-    /**
-     * Return int if float is with trailing .0.
-     *
-     * @param float|int $number
-     * @return float|int
-     */
-    protected function convertZeroTrailingToInteger($number)
-    {
-        if (($number - floor($number)) === 0.0) {
-            $number = (int)$number;
-        }
-
-        return $number;
-    }
-
-    /**
-     * Reset calculator state to 0.
-     */
-    public function reset(): void
-    {
-        $this->result = 0;
     }
 }
