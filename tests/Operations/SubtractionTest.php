@@ -9,22 +9,22 @@ class SubtractionTest extends TestCase
 {
     public function testCalculateReturnExpectedWhenInputContainsNegative()
     {
-        $addition = new Subtraction(12, -20);
+        $addition = new Subtraction();
 
-        $this->assertSame(32, $addition->calculate());
+        $this->assertSame(32, $addition->calculate(12, -20));
     }
 
     /**
      * @dataProvider provideData
      */
-    public function testCalculateReturnExpected($expected, $data)
+    public function testCalculateReturnExpected($expected, array $data)
     {
-        $operation = new Subtraction(...$data);
+        $operation = new Subtraction();
 
-        $this->assertSame($expected, $operation->calculate());
+        $this->assertSame($expected, $operation->calculate(...$data));
     }
 
-    public function provideData()
+    public function provideData(): array
     {
         return [
             'Valid integers' => [10, [22, 12]],

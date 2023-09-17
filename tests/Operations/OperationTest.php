@@ -2,24 +2,43 @@
 
 namespace CalculatorViaMagicMethod\Tests\Operations;
 
-use CalculatorViaMagicMethod\Operations\Addition;
+use CalculatorViaMagicMethod\Operations\Operation;
 use PHPUnit\Framework\TestCase;
 
 class OperationTest extends TestCase
 {
-    public function testConstructorThrowExceptionWhenEmptyArguments()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessageMatches('/^No arguments were passed. Check/');
+    private Operation $service;
 
-        new Addition();
+    protected function setUp(): void
+    {
+        $this->service = new class extends Operation {
+            public function check(...$arguments)
+            {
+                return $this->validate($arguments);
+            }
+
+            protected function performCalculation(...$arguments)
+            {
+                throw new \LogicException('The method is not supposed to be used in this test.');
+            }
+        };
     }
 
-    public function testConstructorThrowExceptionWhenNonNumeric()
+    /** @test */
+    public function it_can_throw_an_exception_when_no_arguments_provided()
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessageMatches('/^Argument value 42 is not valid. Check/');
+        $this->expectExceptionMessage('at least');
 
-        new Addition(22, '42');
+        $this->service->check();
+    }
+
+    /** @test */
+    public function it_can_throw_an_exception_when_an_argument_of_a_wrong_type()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('numeric');
+
+        $this->service->check(42, 'wrong');
     }
 }

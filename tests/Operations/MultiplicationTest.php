@@ -9,22 +9,22 @@ class MultiplicationTest extends TestCase
 {
     public function testCalculateReturnExpectedWhenInputContainsNegative()
     {
-        $addition = new Multiplication(12, -20);
+        $addition = new Multiplication();
 
-        $this->assertSame(-240, $addition->calculate());
+        $this->assertSame(-240, $addition->calculate(12, -20));
     }
 
     /**
      * @dataProvider provideData
      */
-    public function testCalculateReturnExpected($expected, $data)
+    public function testCalculateReturnExpected($expected, array $data)
     {
-        $operation = new Multiplication(...$data);
+        $operation = new Multiplication();
 
-        $this->assertSame($expected, $operation->calculate());
+        $this->assertSame($expected, $operation->calculate(...$data));
     }
 
-    public function provideData()
+    public function provideData(): array
     {
         return [
             'When contains zero' => [0, [22, 12, 0]],

@@ -30,8 +30,8 @@ class Calculator
         $fullName = self::OPERATION_NAMESPACE . $className;
 
         /** @var Operation $operation */
-        $operation = new $fullName(...$arguments);
-        $this->result = $operation->calculate();
+        $operation = new $fullName();
+        $this->result = $operation->calculate(...$arguments);
 
         return $this->result();
     }

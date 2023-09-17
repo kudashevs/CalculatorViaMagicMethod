@@ -4,11 +4,14 @@ namespace CalculatorViaMagicMethod\Operations;
 
 class Addition extends Operation
 {
-    public function calculate()
+    /**
+     * @inheritDoc
+     */
+    public function performCalculation(...$numbers)
     {
         $result = 0;
 
-        foreach ($this->numbers as $number) {
+        foreach ($numbers as $number) {
             $result += $number;
         }
 

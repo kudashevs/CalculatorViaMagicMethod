@@ -4,15 +4,18 @@ namespace CalculatorViaMagicMethod\Operations;
 
 class Multiplication extends Operation
 {
-    public function calculate()
+    /**
+     * @inheritDoc
+     */
+    public function performCalculation(...$numbers)
     {
-        if (in_array(0, $this->numbers, true)) {
+        if (in_array(0, $numbers, true)) {
             return 0;
         }
 
-        $result = array_shift($this->numbers);
+        $result = array_shift($numbers);
 
-        foreach ($this->numbers as $number) {
+        foreach ($numbers as $number) {
             $result *= $number;
         }
 

@@ -4,20 +4,23 @@ namespace CalculatorViaMagicMethod\Operations;
 
 class Division extends Operation
 {
-    public function __construct(...$arguments)
+    protected function validate(array $numbers): void
     {
-        parent::__construct(...$arguments);
+        parent::validate($numbers);
 
-        if (in_array(0, $this->numbers, true)) {
-            throw new \DivisionByZeroError('The value 0 is not valid for the division. Check input arguments.');
+        if (in_array(0, $numbers, true)) {
+            throw new \DivisionByZeroError('Cannot divide by zero.');
         }
     }
 
-    public function calculate()
+    /**
+     * @inheritDoc
+     */
+    public function performCalculation(...$numbers)
     {
-        $result = array_shift($this->numbers);
+        $result = array_shift($numbers);
 
-        foreach ($this->numbers as $number) {
+        foreach ($numbers as $number) {
             $result /= $number;
         }
 

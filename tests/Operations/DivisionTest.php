@@ -10,38 +10,41 @@ class DivisionTest extends TestCase
     public function testConstructorThrowExceptionWhenEmptyArguments()
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessageMatches('/^No arguments were passed. Check/');
+        $this->expectExceptionMessage('at least');
 
-        new Division();
+        $division = new Division();
+        $division->calculate();
     }
 
     public function testConstructorThrowExceptionWhenNonNumeric()
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessageMatches('/^Argument value 42 is not valid. Check/');
+        $this->expectExceptionMessage('allowed');
 
-        new Division(22, '42');
+        $division = new Division(22, '42');
+        $division->calculate(42, 'wrong');
     }
 
     public function testConstructorThrowExceptionWhenContainsZero()
     {
         $this->expectException(\DivisionByZeroError::class);
-        $this->expectExceptionMessageMatches('/^The value 0 is not valid for the division. Check/');
+        $this->expectExceptionMessage('divide by');
 
-        new Division(22, 10, 0);
+        $division = new Division();
+        $division->calculate(22, 10, 0);
     }
 
     /**
      * @dataProvider provideData
      */
-    public function testCalculateReturnExpected($expected, $data)
+    public function testCalculateReturnExpected($expected, array $data)
     {
-        $operation = new Division(...$data);
+        $operation = new Division();
 
-        $this->assertSame($expected, $operation->calculate());
+        $this->assertSame($expected, $operation->calculate(...$data));
     }
 
-    public function provideData()
+    public function provideData(): array
     {
         return [
             'Valid integers' => [11, [22, 2]],

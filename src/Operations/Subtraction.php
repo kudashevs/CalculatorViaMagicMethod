@@ -4,11 +4,14 @@ namespace CalculatorViaMagicMethod\Operations;
 
 class Subtraction extends Operation
 {
-    public function calculate()
+    /**
+     * @inheritDoc
+     */
+    public function performCalculation(...$numbers)
     {
-        $result = array_shift($this->numbers);
+        $result = array_shift($numbers);
 
-        foreach ($this->numbers as $number) {
+        foreach ($numbers as $number) {
             $result -= $number;
         }
 
