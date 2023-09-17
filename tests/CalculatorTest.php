@@ -17,9 +17,9 @@ class CalculatorTest extends ExtendedTestCase
     public function it_can_throw_an_exception_when_a_wrong_method_name()
     {
         $this->expectException(\BadMethodCallException::class);
-        $this->expectExceptionMessageMatches('/^Method with not_exist was not found. Check/');
+        $this->expectExceptionMessageMatches('/^Method .+ was not found. Check/');
 
-        $this->calculator->not_exist();
+        $this->calculator->wrong();
     }
 
     /** @test */

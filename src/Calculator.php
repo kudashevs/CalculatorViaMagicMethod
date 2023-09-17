@@ -38,8 +38,9 @@ class Calculator
 
     /**
      * @param string $operation
-     * @throws \BadMethodCallException
      * @return string
+     *
+     * @throws \BadMethodCallException
      */
     private function findOperation(string $operation): string
     {
@@ -56,7 +57,9 @@ class Calculator
             }
         }
 
-        throw new \BadMethodCallException('Method with ' . $operation . ' was not found. Check method name');
+        throw new \BadMethodCallException(
+            sprintf('Method %s was not found. Check the method name.', $operation)
+        );
     }
 
     /**
