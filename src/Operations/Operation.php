@@ -5,25 +5,27 @@ namespace CalculatorViaMagicMethod\Operations;
 abstract class Operation
 {
     /**
-     * @var array
+     * @param int|float ...$arguments
+     * @return int|float
      */
-    protected $numbers = [];
+    abstract protected function performCalculation(...$arguments);
 
     /**
-     * @param mixed ...$arguments
+     * @param int|float ...$arguments
+     * @return float|int
      */
-    public function __construct(...$arguments)
+    final public function calculate(...$arguments)
     {
         $this->validate($arguments);
 
-        $this->numbers = $arguments;
+        return $this->performCalculation(...$arguments);
     }
 
     /**
-     * @return float|int
+     * @param array $arguments
+     *
+     * @throws \InvalidArgumentException
      */
-    abstract public function calculate();
-
     protected function validate(array $arguments): void
     {
         if (count($arguments) === 0) {
