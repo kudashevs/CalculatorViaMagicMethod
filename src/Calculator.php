@@ -8,10 +8,12 @@ class Calculator
 {
     private const OPERATION_NAMESPACE = __NAMESPACE__ . '\Operations\\';
 
-    /**
-     * @var float|int
-     */
-    private $result = 0;
+    private const OPERATIONS = [
+        'addition' => ['add', 'addition'],
+        'subtraction' => ['sub', 'subtraction'],
+        'multiplication' => ['mult', 'multiply', 'multiplication'],
+        'division' => ['div', 'divide', 'division'],
+    ];
 
     public function __construct()
     {
@@ -36,28 +38,21 @@ class Calculator
     }
 
     /**
-     * @param string $operation
+     * @param string $requestedOperation
      * @return string
      *
      * @throws \BadMethodCallException
      */
-    private function findOperation(string $operation): string
+    private function findOperation(string $requestedOperation): string
     {
-        $operations = [
-            'addition' => ['add', 'addition'],
-            'subtraction' => ['sub', 'subtraction'],
-            'multiplication' => ['mult', 'multiply', 'multiplication'],
-            'division' => ['div', 'divide', 'division'],
-        ];
-
-        foreach ($operations as $name => $possible) {
-            if (in_array($operation, $possible, true)) {
+        foreach (self::OPERATIONS as $name => $validOperations) {
+            if (in_array($requestedOperation, $validOperations, true)) {
                 return ucfirst($name);
             }
         }
 
         throw new \BadMethodCallException(
-            sprintf('Method %s was not found. Check the method name.', $operation)
+            sprintf('Method %s was not found. Check the method name.', $requestedOperation)
         );
     }
 }
