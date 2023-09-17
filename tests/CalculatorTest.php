@@ -6,14 +6,11 @@ use CalculatorViaMagicMethod\Calculator;
 
 class CalculatorTest extends ExtendedTestCase
 {
-    /**
-     * @var Calculator
-     */
-    private $calc;
+    private Calculator $calculator;
 
     public function setUp(): void
     {
-        $this->calc = new Calculator();
+        $this->calculator = new Calculator();
     }
 
     public function testCalculatorThrowExceptionWhenMethodNotValid()
@@ -21,7 +18,7 @@ class CalculatorTest extends ExtendedTestCase
         $this->expectException(\BadMethodCallException::class);
         $this->expectExceptionMessageMatches('/^Method with not_exist was not found. Check/');
 
-        $this->calc->not_exist();
+        $this->calculator->not_exist();
     }
 
     public function testCalculatorThrowExpcetionWhenMethodLacksArguments()
@@ -29,15 +26,15 @@ class CalculatorTest extends ExtendedTestCase
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessageMatches('/^No arguments were passed. Check/');
 
-        $this->calc->add();
+        $this->calculator->add();
     }
 
     public function testFindOperationReturnExpected()
     {
-        $method = $this->getPrivateMethod($this->calc, 'findOperation');
+        $method = $this->getPrivateMethod($this->calculator, 'findOperation');
 
-        $this->assertEquals('Addition', $method->invokeArgs($this->calc, ['add']));
-        $this->assertEquals('Addition', $method->invokeArgs($this->calc, ['addition']));
+        $this->assertEquals('Addition', $method->invokeArgs($this->calculator, ['add']));
+        $this->assertEquals('Addition', $method->invokeArgs($this->calculator, ['addition']));
     }
 
     public function testResultReturnInitial()
@@ -49,20 +46,20 @@ class CalculatorTest extends ExtendedTestCase
 
     public function testAdditionReturnExpectedWhenEmptyState()
     {
-        $this->calc->add(22);
+        $this->calculator->add(22);
 
-        $this->assertSame(22, $this->calc->result());
+        $this->assertSame(22, $this->calculator->result());
     }
 
     public function testResetReturnExpected()
     {
-        $this->calc->add(22);
+        $this->calculator->add(22);
 
-        $this->assertSame(22, $this->calc->result());
+        $this->assertSame(22, $this->calculator->result());
 
-        $this->calc->reset();
+        $this->calculator->reset();
 
-        $this->assertSame(0, $this->calc->result());
+        $this->assertSame(0, $this->calculator->result());
     }
 
     /**
@@ -70,9 +67,9 @@ class CalculatorTest extends ExtendedTestCase
      */
     public function testConvertZeroTrailingToIntegerReturnExpected($expected, $value)
     {
-        $method = $this->getPrivateMethod($this->calc, 'convertZeroTrailingToInteger');
+        $method = $this->getPrivateMethod($this->calculator, 'convertZeroTrailingToInteger');
 
-        $this->assertSame($expected, $method->invokeArgs($this->calc, [$value]));
+        $this->assertSame($expected, $method->invokeArgs($this->calculator, [$value]));
     }
 
     public function provideDataConvertZeroTrailingToInteger()
