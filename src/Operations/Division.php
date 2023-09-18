@@ -9,7 +9,7 @@ class Division extends Operation
         parent::validate($numbers);
 
         if (in_array(0, $numbers, true)) {
-            throw new \DivisionByZeroError('Cannot divide by zero.');
+            throw new \InvalidArgumentException('Cannot divide by zero.');
         }
     }
 

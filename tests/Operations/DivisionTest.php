@@ -27,7 +27,7 @@ class DivisionTest extends TestCase
 
     public function testConstructorThrowExceptionWhenContainsZero()
     {
-        $this->expectException(\DivisionByZeroError::class);
+        $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('divide by');
 
         $division = new Division();
