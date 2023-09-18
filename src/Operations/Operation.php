@@ -2,6 +2,8 @@
 
 namespace CalculatorViaMagicMethod\Operations;
 
+use CalculatorViaMagicMethod\Exceptions\InvalidOperationArgument;
+
 abstract class Operation
 {
     /**
@@ -13,6 +15,8 @@ abstract class Operation
     /**
      * @param int|float ...$arguments
      * @return float|int
+     *
+     * @throws InvalidOperationArgument|\InvalidArgumentException
      */
     final public function calculate(...$arguments)
     {
@@ -24,17 +28,17 @@ abstract class Operation
     /**
      * @param array $arguments
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidOperationArgument
      */
     protected function validate(array $arguments): void
     {
         if (count($arguments) === 0) {
-            throw new \InvalidArgumentException('Please provide at least one argument.');
+            throw new InvalidOperationArgument('Please provide at least one argument.');
         }
 
         foreach ($arguments as $number) {
             if (!is_numeric($number)) {
-                throw new \InvalidArgumentException('Only numeric arguments are allowed.');
+                throw new InvalidOperationArgument('Only numeric arguments are allowed.');
             }
         }
     }

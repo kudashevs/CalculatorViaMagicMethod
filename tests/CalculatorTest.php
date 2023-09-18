@@ -3,6 +3,7 @@
 namespace CalculatorViaMagicMethod\Tests;
 
 use CalculatorViaMagicMethod\Calculator;
+use CalculatorViaMagicMethod\Exceptions\InvalidOperationArgument;
 use PHPUnit\Framework\TestCase;
 
 class CalculatorTest extends TestCase
@@ -26,7 +27,7 @@ class CalculatorTest extends TestCase
     /** @test */
     public function it_can_throw_an_exception_when_no_arguments_are_provided()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidOperationArgument::class);
         $this->expectExceptionMessage('at least');
 
         $this->calculator->add();
@@ -35,7 +36,7 @@ class CalculatorTest extends TestCase
     /** @test */
     public function it_can_throw_an_exception_when_a_wrong_type_argument_is_provided_to_the_closure()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidOperationArgument::class);
         $this->expectExceptionMessage('numeric');
 
         $this->calculator->add(42, 'wrong');

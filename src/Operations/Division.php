@@ -2,6 +2,8 @@
 
 namespace CalculatorViaMagicMethod\Operations;
 
+use CalculatorViaMagicMethod\Exceptions\InvalidOperationArgument;
+
 class Division extends Operation
 {
     protected function validate(array $numbers): void
@@ -9,7 +11,7 @@ class Division extends Operation
         parent::validate($numbers);
 
         if (in_array(0, $numbers, false)) {
-            throw new \InvalidArgumentException('Cannot divide by zero.');
+            throw new InvalidOperationArgument('Cannot divide by zero.');
         }
     }
 
