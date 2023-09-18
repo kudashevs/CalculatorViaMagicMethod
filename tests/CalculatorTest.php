@@ -36,7 +36,7 @@ class CalculatorTest extends TestCase
     public function it_can_throw_an_exception_when_a_wrong_type_argument_is_provided_to_the_closure()
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('allowed');
+        $this->expectExceptionMessage('numeric');
 
         $this->calculator->add(42, 'wrong');
     }
