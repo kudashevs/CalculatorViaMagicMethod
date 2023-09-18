@@ -9,10 +9,10 @@ final class Factory
     private const OPERATIONS_NAMESPACE = __NAMESPACE__;
 
     private const OPERATIONS = [
-        'addition' => ['add'],
-        'subtraction' => ['sub'],
-        'multiplication' => ['mult', 'multiply'],
-        'division' => ['div', 'divide'],
+        'addition' => ['addition', 'add'],
+        'subtraction' => ['subtraction', 'sub'],
+        'multiplication' => ['multiplication', 'mult', 'multiply'],
+        'division' => ['division', 'div', 'divide'],
     ];
 
     /**
@@ -31,12 +31,6 @@ final class Factory
 
     private static function findOperationClass(string $requestedOperation): string
     {
-        // find an operation by its name
-        if (array_key_exists($requestedOperation, self::OPERATIONS)) {
-            return ucfirst($requestedOperation);
-        }
-
-        // find an operation by its alias
         foreach (self::OPERATIONS as $name => $validOperations) {
             if (in_array($requestedOperation, $validOperations, true)) {
                 return ucfirst($name);
