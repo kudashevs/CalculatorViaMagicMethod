@@ -2,57 +2,28 @@
 
 namespace CalculatorViaMagicMethod;
 
-use CalculatorViaMagicMethod\Operations\Operation;
+use CalculatorViaMagicMethod\Operations\Factory;
 
 class Calculator
 {
-    private const OPERATION_NAMESPACE = __NAMESPACE__ . '\Operations\\';
-
-    private const OPERATIONS = [
-        'addition' => ['add', 'addition'],
-        'subtraction' => ['sub', 'subtraction'],
-        'multiplication' => ['mult', 'multiply', 'multiplication'],
-        'division' => ['div', 'divide', 'division'],
-    ];
-
-    public function __construct()
-    {
-    }
-
     /**
-     * Find valid method by name and calculate arguments.
+     * Find an operation by the incoming method name and if an operation
+     * exists, perform calculations by passing arguments to the operation.
      *
      * @param string $name
      * @param array $arguments
-     * @return float|int
+     * @return int|float
      */
-    public function __call(string $name, $arguments = [])
+    public function __call(string $name, array $arguments)
     {
-        $className = $this->findOperation($name);
-        $fullName = self::OPERATION_NAMESPACE . $className;
-
-        /** @var Operation $operation */
-        $operation = new $fullName();
-
-        return $operation->calculate(...$arguments);
-    }
-
-    /**
-     * @param string $requestedOperation
-     * @return string
-     *
-     * @throws \BadMethodCallException
-     */
-    private function findOperation(string $requestedOperation): string
-    {
-        foreach (self::OPERATIONS as $name => $validOperations) {
-            if (in_array($requestedOperation, $validOperations, true)) {
-                return ucfirst($name);
-            }
+        try {
+            $operation = Factory::create($name);
+        } catch (\ErrorException $e) {
+            throw new \BadMethodCallException(
+                sprintf('Method %s was not found. Check the method name.', $name)
+            );
         }
 
-        throw new \BadMethodCallException(
-            sprintf('Method %s was not found. Check the method name.', $requestedOperation)
-        );
+        return $operation->calculate(...$arguments);
     }
 }
