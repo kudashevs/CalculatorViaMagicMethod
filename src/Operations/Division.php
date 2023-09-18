@@ -8,7 +8,7 @@ class Division extends Operation
     {
         parent::validate($numbers);
 
-        if (in_array(0, $numbers, true)) {
+        if (in_array(0, $numbers, false)) {
             throw new \InvalidArgumentException('Cannot divide by zero.');
         }
     }
