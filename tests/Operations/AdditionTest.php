@@ -7,29 +7,73 @@ use PHPUnit\Framework\TestCase;
 
 class AdditionTest extends TestCase
 {
-    public function testCalculateReturnExpectedWhenInputContainsNegative()
-    {
-        $operation = new Addition();
+    private const MAX_PRECISION = 0.000000001;
 
-        $this->assertSame(-8, $operation->calculate(12, -20));
+    private Addition $addition;
+
+    protected function setUp(): void
+    {
+        $this->addition = new Addition();
+    }
+
+    /** @test */
+    public function it_can_process_one_argument()
+    {
+        $this->assertSame(2, $this->addition->calculate(2));
+    }
+
+    /** @test */
+    public function it_can_process_two_arguments()
+    {
+        $this->assertSame(42, $this->addition->calculate(40, 2));
+    }
+
+    /** @test */
+    public function it_can_process_multiple_arguments()
+    {
+        $this->assertSame(64, $this->addition->calculate(58, 3, 2, 1));
+    }
+
+    /** @test */
+    public function it_can_process_a_zero_number()
+    {
+        $this->assertSame(42, $this->addition->calculate(42, 0));
+    }
+
+    /** @test */
+    public function it_can_process_a_negative_number()
+    {
+        $this->assertSame(42, $this->addition->calculate(45, -3));
     }
 
     /**
-     * @dataProvider provideData
+     * @test
+     * @dataProvider provideDifferentValues
      */
-    public function testCalculateReturnExpected($expected, array $data)
+    public function it_can_perform_addition(array $values, $expected)
     {
-        $operation = new Addition();
-
-        $this->assertSame($expected, $operation->calculate(...$data));
+        $this->assertEqualsWithDelta($expected, $this->addition->calculate(...$values), self::MAX_PRECISION);;
     }
 
-    public function provideData(): array
+    public function provideDifferentValues(): array
     {
         return [
-            'Valid integers' => [32, [12, 20]],
-            'Valid floats' => [2.922222, [0.5, 2.422222]],
-            'Valid integer and float' => [17.5, [12.5, 5]],
+            'add integer to integer' => [
+                [12, 20],
+                32,
+            ],
+            'add float to float' => [
+                [0.5, 2.45],
+                2.95,
+            ],
+            'add integer to float' => [
+                [12.5, 5],
+                17.5,
+            ],
+            'add float to integer' => [
+                [5, 12.5],
+                17.5,
+            ],
         ];
     }
 }

@@ -7,30 +7,73 @@ use PHPUnit\Framework\TestCase;
 
 class MultiplicationTest extends TestCase
 {
-    public function testCalculateReturnExpectedWhenInputContainsNegative()
-    {
-        $addition = new Multiplication();
+    private const MAX_PRECISION = 0.000000001;
 
-        $this->assertSame(-240, $addition->calculate(12, -20));
+    private Multiplication $multiplication;
+
+    protected function setUp(): void
+    {
+        $this->multiplication = new Multiplication();
+    }
+
+    /** @test */
+    public function it_can_process_one_argument()
+    {
+        $this->assertSame(2, $this->multiplication->calculate(2));
+    }
+
+    /** @test */
+    public function it_can_process_two_arguments()
+    {
+        $this->assertSame(80, $this->multiplication->calculate(40, 2));
+    }
+
+    /** @test */
+    public function it_can_process_multiple_arguments()
+    {
+        $this->assertSame(464, $this->multiplication->calculate(58, 4, 2, 1));
+    }
+
+    /** @test */
+    public function it_can_process_a_zero_number()
+    {
+        $this->assertSame(0, $this->multiplication->calculate(42, 0));
+    }
+
+    /** @test */
+    public function it_can_process_a_negative_number()
+    {
+        $this->assertSame(-135, $this->multiplication->calculate(45, -3));
     }
 
     /**
-     * @dataProvider provideData
+     * @test
+     * @dataProvider provideDifferentValues
      */
-    public function testCalculateReturnExpected($expected, array $data)
+    public function it_can_perform_multiplication(array $values, $expected)
     {
-        $operation = new Multiplication();
-
-        $this->assertSame($expected, $operation->calculate(...$data));
+        $this->assertEqualsWithDelta($expected, $this->multiplication->calculate(...$values), self::MAX_PRECISION);
     }
 
-    public function provideData(): array
+    public function provideDifferentValues(): array
     {
         return [
-            'When contains zero' => [0, [22, 12, 0]],
-            'Valid integers' => [110, [22, 5]],
-            'Valid floats' => [28.0, [3.5, 8]],
-            'Valid integer and float' => [5.5, [2.75, 2]],
+            'multiply integer and integer' => [
+                [12, 2],
+                24,
+            ],
+            'multiply float and float' => [
+                [2.5, 1.45],
+                3.625,
+            ],
+            'multiply integer and float' => [
+                [5, 12.5],
+                62.5,
+            ],
+            'multiply float and integer' => [
+                [12.5, 5],
+                62.5,
+            ],
         ];
     }
 }

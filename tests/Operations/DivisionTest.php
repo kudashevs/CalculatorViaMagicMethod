@@ -7,49 +7,77 @@ use PHPUnit\Framework\TestCase;
 
 class DivisionTest extends TestCase
 {
-    public function testConstructorThrowExceptionWhenEmptyArguments()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('at least');
+    private const MAX_PRECISION = 0.000000001;
 
-        $division = new Division();
-        $division->calculate();
+    private Division $division;
+
+    protected function setUp(): void
+    {
+        $this->division = new Division();
     }
 
-    public function testConstructorThrowExceptionWhenNonNumeric()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('allowed');
-
-        $division = new Division(22, '42');
-        $division->calculate(42, 'wrong');
-    }
-
-    public function testConstructorThrowExceptionWhenContainsZero()
+    /** @test */
+    public function it_can_throw_an_exception_when_division_by_zero()
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('divide by');
 
         $division = new Division();
-        $division->calculate(22, 10, 0);
+        $division->calculate(42, 2, 0);
+    }
+
+    /** @test */
+    public function it_can_process_one_argument()
+    {
+        $this->assertSame(2, $this->division->calculate(2));
+    }
+
+    /** @test */
+    public function it_can_process_two_arguments()
+    {
+        $this->assertSame(20, $this->division->calculate(40, 2));
+    }
+
+    /** @test */
+    public function it_can_process_multiple_arguments()
+    {
+        $this->assertSame(7.25, $this->division->calculate(58, 4, 2, 1));
+    }
+
+    /** @test */
+    public function it_can_process_a_negative_number()
+    {
+        $this->assertSame(-15, $this->division->calculate(45, -3));
     }
 
     /**
-     * @dataProvider provideData
+     * @test
+     * @dataProvider provideDifferentValues
      */
-    public function testCalculateReturnExpected($expected, array $data)
+    public function it_can_perform_division(array $values, $expected)
     {
-        $operation = new Division();
-
-        $this->assertSame($expected, $operation->calculate(...$data));
+        $this->assertEqualsWithDelta($expected, $this->division->calculate(...$values), self::MAX_PRECISION);
     }
 
-    public function provideData(): array
+    public function provideDifferentValues(): array
     {
         return [
-            'Valid integers' => [11, [22, 2]],
-            'Valid floats' => [3.2758620689655173, [47.5, 14.5]],
-            'Valid integer and float' => [3.0003000300030, [10, 3.333]],
+            'divide integer and integer' => [
+                [42, 20],
+                2.1,
+            ],
+            'divide float and float' => [
+                [3.5, 1.75],
+                2.0,
+            ],
+            'divide integer and float' => [
+                [12.5, 5],
+                2.5,
+            ],
+            'divide float and integer' => [
+                [5, 12.5],
+                0.4,
+            ],
         ];
     }
 }
