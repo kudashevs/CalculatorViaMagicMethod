@@ -20,11 +20,11 @@ class Division extends Operation
         return $result;
     }
 
-    protected function validate(array $numbers): void
+    protected function validate(array $arguments): void
     {
-        parent::validate($numbers);
+        parent::validate($arguments);
 
-        if (in_array(0, $numbers, false)) {
+        if (in_array(0, $arguments, false)) {
             throw new InvalidOperationArgument('Cannot divide by zero.');
         }
     }
