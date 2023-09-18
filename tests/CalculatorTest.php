@@ -3,8 +3,9 @@
 namespace CalculatorViaMagicMethod\Tests;
 
 use CalculatorViaMagicMethod\Calculator;
+use PHPUnit\Framework\TestCase;
 
-class CalculatorTest extends ExtendedTestCase
+class CalculatorTest extends TestCase
 {
     private Calculator $calculator;
 
