@@ -6,15 +6,6 @@ use CalculatorViaMagicMethod\Exceptions\InvalidOperationArgument;
 
 class Division extends Operation
 {
-    protected function validate(array $numbers): void
-    {
-        parent::validate($numbers);
-
-        if (in_array(0, $numbers, false)) {
-            throw new InvalidOperationArgument('Cannot divide by zero.');
-        }
-    }
-
     /**
      * @inheritDoc
      */
@@ -27,5 +18,14 @@ class Division extends Operation
         }
 
         return $result;
+    }
+
+    protected function validate(array $numbers): void
+    {
+        parent::validate($numbers);
+
+        if (in_array(0, $numbers, false)) {
+            throw new InvalidOperationArgument('Cannot divide by zero.');
+        }
     }
 }
