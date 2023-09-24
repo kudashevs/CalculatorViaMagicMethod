@@ -1,8 +1,8 @@
 <?php
 
-namespace CalculatorViaMagicMethod\Tests\Operations;
+namespace CalculatorViaMagic\Tests\Operations;
 
-use CalculatorViaMagicMethod\Operations\Addition;
+use CalculatorViaMagic\Operations\Addition;
 use PHPUnit\Framework\TestCase;
 
 class AdditionTest extends TestCase

@@ -1,9 +1,9 @@
 <?php
 
-namespace CalculatorViaMagicMethod\Tests;
+namespace CalculatorViaMagic\Tests;
 
-use CalculatorViaMagicMethod\Calculator;
-use CalculatorViaMagicMethod\Exceptions\InvalidOperationArgument;
+use CalculatorViaMagic\Calculator;
+use CalculatorViaMagic\Exceptions\InvalidOperationArgument;
 use PHPUnit\Framework\TestCase;
 
 class CalculatorTest extends TestCase

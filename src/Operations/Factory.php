@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CalculatorViaMagicMethod\Operations;
+namespace CalculatorViaMagic\Operations;
 
 final class Factory
 {

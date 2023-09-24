@@ -1,8 +1,8 @@
 <?php
 
-namespace CalculatorViaMagicMethod\Operations;
+namespace CalculatorViaMagic\Operations;
 
-use CalculatorViaMagicMethod\Exceptions\InvalidOperationArgument;
+use CalculatorViaMagic\Exceptions\InvalidOperationArgument;
 
 abstract class Operation
 {

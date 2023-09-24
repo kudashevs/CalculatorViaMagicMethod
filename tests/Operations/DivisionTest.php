@@ -1,9 +1,9 @@
 <?php
 
-namespace CalculatorViaMagicMethod\Tests\Operations;
+namespace CalculatorViaMagic\Tests\Operations;
 
-use CalculatorViaMagicMethod\Exceptions\InvalidOperationArgument;
-use CalculatorViaMagicMethod\Operations\Division;
+use CalculatorViaMagic\Exceptions\InvalidOperationArgument;
+use CalculatorViaMagic\Operations\Division;
 use PHPUnit\Framework\TestCase;
 
 class DivisionTest extends TestCase

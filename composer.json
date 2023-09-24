@@ -18,12 +18,12 @@
     },
     "autoload": {
         "psr-4": {
-            "CalculatorViaMagicMethod\\": "src/"
+            "CalculatorViaMagic\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "CalculatorViaMagicMethod\\Tests\\": "tests/"
+            "CalculatorViaMagic\\Tests\\": "tests/"
         }
     },
     "scripts": {

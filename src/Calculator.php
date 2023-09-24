@@ -1,8 +1,8 @@
 <?php
 
-namespace CalculatorViaMagicMethod;
+namespace CalculatorViaMagic;
 
-use CalculatorViaMagicMethod\Operations\Factory;
+use CalculatorViaMagic\Operations\Factory;
 
 class Calculator
 {

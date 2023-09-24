@@ -1,6 +1,6 @@
 <?php
 
-namespace CalculatorViaMagicMethod\Operations;
+namespace CalculatorViaMagic\Operations;
 
 class Addition extends Operation
 {

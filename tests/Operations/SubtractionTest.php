@@ -1,8 +1,8 @@
 <?php
 
-namespace CalculatorViaMagicMethod\Tests\Operations;
+namespace CalculatorViaMagic\Tests\Operations;
 
-use CalculatorViaMagicMethod\Operations\Subtraction;
+use CalculatorViaMagic\Operations\Subtraction;
 use PHPUnit\Framework\TestCase;
 
 class SubtractionTest extends TestCase
