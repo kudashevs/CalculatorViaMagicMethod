@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CalculatorViaMagic\Operations;
 
 use CalculatorViaMagic\Exceptions\InvalidOperationArgument;
