@@ -7,22 +7,22 @@ use CalculatorViaMagicMethod\Exceptions\InvalidOperationArgument;
 abstract class Operation
 {
     /**
-     * @param int|float ...$arguments
+     * @param int|float ...$numbers
      * @return int|float
      */
-    abstract protected function performCalculation(...$arguments);
+    abstract protected function performCalculation(...$numbers);
 
     /**
-     * @param int|float ...$arguments
+     * @param int|float ...$numbers
      * @return float|int
      *
      * @throws InvalidOperationArgument|\InvalidArgumentException
      */
-    final public function calculate(...$arguments)
+    final public function calculate(...$numbers)
     {
-        $this->validate($arguments);
+        $this->validate($numbers);
 
-        return $this->performCalculation(...$arguments);
+        return $this->performCalculation(...$numbers);
     }
 
     /**
