@@ -20,17 +20,17 @@ abstract class Operation
      */
     final public function calculate(...$numbers)
     {
-        $this->validate($numbers);
+        $this->validate(...$numbers);
 
         return $this->performCalculation(...$numbers);
     }
 
     /**
-     * @param array $arguments
+     * @param ...$arguments
      *
      * @throws InvalidOperationArgument
      */
-    protected function validate(array $arguments): void
+    protected function validate(...$arguments): void
     {
         if (count($arguments) === 0) {
             throw new InvalidOperationArgument('Please provide at least one argument.');

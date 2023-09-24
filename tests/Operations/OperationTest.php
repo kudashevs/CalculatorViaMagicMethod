@@ -15,7 +15,7 @@ class OperationTest extends TestCase
         $this->service = new class extends Operation {
             public function check(...$arguments)
             {
-                return $this->validate($arguments);
+                return $this->validate(...$arguments);
             }
 
             protected function performCalculation(...$arguments)
