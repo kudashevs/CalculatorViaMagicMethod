@@ -1,6 +1,6 @@
 <?php
 
-namespace CalculatorViaMagic\Tests;
+namespace CalculatorViaMagic\Tests\Unit;
 
 use CalculatorViaMagic\Calculator;
 use CalculatorViaMagic\Exceptions\InvalidOperationArgument;

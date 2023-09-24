@@ -1,6 +1,6 @@
 <?php
 
-namespace CalculatorViaMagic\Tests\Operations;
+namespace CalculatorViaMagic\Tests\Unit\Operations;
 
 use CalculatorViaMagic\Operations\Subtraction;
 use PHPUnit\Framework\TestCase;

@@ -1,7 +1,8 @@
 <?php
 
-namespace CalculatorViaMagic\Operations;
+namespace CalculatorViaMagic\Tests\Unit\Operations;
 
+use CalculatorViaMagic\Operations\Factory;
 use PHPUnit\Framework\TestCase;
 
 class FactoryTest extends TestCase
