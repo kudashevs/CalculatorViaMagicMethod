@@ -10,6 +10,16 @@ try {
     echo $calculator->multiply(5, 6, 8) . PHP_EOL; // results in 240
     echo $calculator->div(22.2, 2) . PHP_EOL; // results in 11.1
 } catch (\Exception $e) {
-    error_log('PHP Exception: ' . $e->getMessage() . ' in file ' . $e->getFile() . ' on line ' . $e->getLine() . '', 0);
-    echo $e->getMessage() . PHP_EOL;
+    echo explainException($e);
+}
+
+function explainException(\Throwable $exception): string
+{
+    return sprintf(
+        '%s: Something went wrong with a message "%s" in file %s on line %s.' . PHP_EOL,
+        get_class($exception),
+        $exception->getMessage(),
+        $exception->getFile(),
+        $exception->getLine(),
+    );
 }
