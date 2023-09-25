@@ -10,12 +10,14 @@ use CalculatorViaMagic\Operations\Factory;
 class Calculator
 {
     /**
-     * Find an operation by the incoming method name and if an operation
-     * exists, perform calculations by passing arguments to the operation.
+     * Find an operation by the name of a method being called and if an operation exists,
+     * perform calculations by invoking the operation's method with the passed arguments.
      *
      * @param string $name
      * @param array $arguments
      * @return int|float
+     *
+     * @throws \BadMethodCallException
      */
     public function __call(string $name, array $arguments)
     {
