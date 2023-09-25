@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CalculatorViaMagic;
 
+use CalculatorViaMagic\Exceptions\OperationNotFound;
 use CalculatorViaMagic\Operations\Factory;
 
 class Calculator
@@ -20,7 +21,7 @@ class Calculator
     {
         try {
             $operation = Factory::create($name);
-        } catch (\ErrorException $e) {
+        } catch (OperationNotFound $e) {
             throw new \BadMethodCallException(
                 sprintf('Method %s was not found. Check the method name.', $name)
             );

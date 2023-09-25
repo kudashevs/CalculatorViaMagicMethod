@@ -2,6 +2,7 @@
 
 namespace CalculatorViaMagic\Tests\Unit\Operations;
 
+use CalculatorViaMagic\Exceptions\OperationNotFound;
 use CalculatorViaMagic\Operations\Factory;
 use PHPUnit\Framework\TestCase;
 
@@ -10,7 +11,7 @@ class FactoryTest extends TestCase
     /** @test */
     public function it_can_throw_an_exception_when_an_unknown_operation()
     {
-        $this->expectException(\ErrorException::class);
+        $this->expectException(OperationNotFound::class);
         $this->expectExceptionMessage('not found');
 
         Factory::create('unknown');

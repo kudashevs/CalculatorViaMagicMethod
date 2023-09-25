@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace CalculatorViaMagic\Operations;
 
+use CalculatorViaMagic\Exceptions\OperationNotFound;
+
 final class Factory
 {
     private const OPERATIONS_NAMESPACE = __NAMESPACE__;
@@ -19,7 +21,7 @@ final class Factory
      * @param string $name
      * @return Operation
      *
-     * @throws \ErrorException
+     * @throws OperationNotFound
      */
     public static function create(string $name): Operation
     {
@@ -37,7 +39,7 @@ final class Factory
             }
         }
 
-        throw new \ErrorException(
+        throw new OperationNotFound(
             sprintf('The requested operation %s was not found.', $requestedOperation)
         );
     }
