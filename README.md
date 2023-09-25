@@ -1,12 +1,19 @@
-## Calculator Via Magic Method
+# Calculator Via Magic
 
-A simple calculator app is written in PHP and implements mathematical operations through magic _call method.
-
-The main idea is that we use Calculator class which receives some method call with arguments (method actually doesn't exist).
-Magic __call method works like FactoryMethod pattern and decides which operation to use. If the method name is a valid class name
-related to some operation when __call method evaluates calculations on the specific class and returns the result. If not
-Exception will be thrown.
+This is a case study that aims to show one of the possible ways of using magic methods in PHP language.
 
 
-This isn't a production solution, but only a training exercise which helps better understand how magic methods work.  
-Any ideas, suggestions, and reviews will be much appreciated :)
+## How it works
+
+We are given a `Calculator` class with the only one `__call` method. This is so-called "magic method", which is
+triggered when an inaccessible method is called on an object. This magic method accepts the name of a method being
+called and an array of the provided arguments. When the `__call` method is triggered, a `Calculator` instance is trying
+to identify an `Operation` that corresponds to a received method name. If the suitable `Operation` exists, the `Calculator`
+requests a factory to create an instance of the operation and performs calculations using this instance. If not, it throws
+an exception as if there were no such method.
+
+```php
+$calculator = new Calculator();
+echo $calculator->addition(1, 2); // results in 3
+```
+for more usage examples, please see the [examples](examples/) folder.
