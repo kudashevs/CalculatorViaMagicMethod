@@ -19,6 +19,17 @@ echo $calculator->addition(1, 2); // results in 3
 for more usage examples, please see the [examples](examples/) folder.
 
 
+## Notes
+
+By default, the package provides four classes that correspond to the basic math operations (addition, subtraction,
+multiplication, division). Each class extends an `Operation` class. The `Operation` class is an abstract class that
+obligates its subclasses to implement the `performCalculation` method. It also provides default implementations for
+`calculate` and `validate` methods. The `Division` class overrides the default implementation of the `validate` method
+and extends its functionality. For more information see the [Operations](src/Operations/) folder).
+
+A lookup table for supported operations is kept as a constant in the [Factory.php](src/Operations/Factory.php) file.
+
+
 ## License
 
 The MIT License (MIT). Please see the [License file](LICENSE.md) for more information.
