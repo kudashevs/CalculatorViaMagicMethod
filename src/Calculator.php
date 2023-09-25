@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CalculatorViaMagic;
 
+use BadMethodCallException;
 use CalculatorViaMagic\Exceptions\OperationNotFound;
 use CalculatorViaMagic\Operations\Factory;
 
@@ -31,14 +32,14 @@ class Calculator
      * @param array $arguments
      * @return int|float
      *
-     * @throws \BadMethodCallException
+     * @throws BadMethodCallException
      */
     public function __call(string $name, array $arguments)
     {
         try {
             $operation = Factory::create($name);
         } catch (OperationNotFound $e) {
-            throw new \BadMethodCallException(
+            throw new BadMethodCallException(
                 sprintf('Method %s was not found. Check the method name.', $name)
             );
         }
