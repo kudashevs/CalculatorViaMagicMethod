@@ -7,6 +7,20 @@ namespace CalculatorViaMagic;
 use CalculatorViaMagic\Exceptions\OperationNotFound;
 use CalculatorViaMagic\Operations\Factory;
 
+/**
+ * @todo don't forget to update these method signatures
+ *
+ * @method int|float add(int|float ...$numbers)
+ * @method int|float addition(int|float ...$numbers)
+ * @method int|float sub(int|float ...$numbers)
+ * @method int|float subtraction(int|float ...$numbers)
+ * @method int|float mult(int|float ...$numbers)
+ * @method int|float multiply(int|float ...$numbers)
+ * @method int|float multiplication(int|float ...$numbers)
+ * @method int|float div(int|float ...$numbers)
+ * @method int|float divide(int|float ...$numbers)
+ * @method int|float division(int|float ...$numbers)
+ */
 class Calculator
 {
     /**
