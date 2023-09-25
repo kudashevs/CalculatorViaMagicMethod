@@ -27,6 +27,9 @@ obligates its subclasses to implement the `performCalculation` method. It also p
 `calculate` and `validate` methods. The `Division` class overrides the default implementation of the `validate` method
 and extends its functionality. For more information see the [Operations](src/Operations/) folder).
 
+The validation of input arguments is implemented in the [Operation](src/Operations/Operation.php) abstract class. By using
+the `final` keyword and the inheritance, we force all the `Operation` implementations to use the predefined validation.
+
 A lookup table for supported operations is kept as a constant in the [Factory.php](src/Operations/Factory.php) file.
 
 
