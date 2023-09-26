@@ -28,7 +28,7 @@ abstract class Operation
     }
 
     /**
-     * @param ...$arguments
+     * @param int|float ...$arguments
      *
      * @throws InvalidOperationArgument
      */
