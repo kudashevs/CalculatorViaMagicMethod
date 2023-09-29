@@ -29,7 +29,7 @@ class Calculator
      * perform calculations by invoking the operation's method with the passed arguments.
      *
      * @param string $name
-     * @param array $arguments
+     * @param array<int|float> $arguments
      * @return int|float
      *
      * @throws BadMethodCallException
