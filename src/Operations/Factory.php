@@ -26,6 +26,7 @@ final class Factory
     public static function create(string $name): Operation
     {
         $className = self::findOperationClass($name);
+        /** @var class-string<Operation> $fullName */
         $fullName = self::OPERATIONS_NAMESPACE . '\\' . $className;
 
         return new $fullName();
